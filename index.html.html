@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="https://kit.fontawesome.com/5c0510f9cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container0">
+      <div class="navbar_top">
+        <div class="nav">
+           <h3 id="logo" >+ Vtien</h3>
+        </div>
+        <div class="top_content">
+          <div class="content_about">
+              <h1>About VTien</h1>
+              <div id="container">
+                 <div id="text"></div>
+                 <div id="cursor"></div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="box0">
+        <div class="scene">
+        <div class="cube">
+        <div class="cube-face  cube-face-front"></div>
+        <div class="cube-face  cube-face-back"></div>
+        <div class="cube-face  cube-face-left"></div>
+        <div class="cube-face  cube-face-right"></div>
+
+        </div>
+        </div>
+      </div>
+
+      <div class="content">
+          <div class="content_vison">
+              <div class="heading">
+                <h1>Vison</h1>
+              </div>
+              <div class="info">
+                <p>
+                Our vision is a future where medical communication
+                is effortless — fast, simple, seamless and secure.</p>
+              </div>
+          </div>
+        <div class="content_misson">
+            <div class="heading">
+              <h1>Misson</h1>
+            </div>
+            <div class="info">
+              <p>Our mission is to improve patient care with
+                comprehensive clinical information and resources essential to physicians and healthcare professionals.</p>
+            </div>
+          </div>
+        <div class="content_whoarewe">
+            <div class="heading">
+              <h1>Who are we ?</h1>
+            </div>
+            <div class="info">
+              <p>Vtiein is the online global destination for physicians and healthcare professionals worldwide,
+                 offering the latest medical news and expert perspectives;
+                 essential point-of-care drug and disease information; and relevant professional education.</p>
+            </div>
+        </div>
+
+      </div>
+      <div class="footer">
+        <div class="one">
+          <h3 style="font-weight:lighter">For more information of our company</h3>
+        </div>
+        <div class="two">
+          <ul>
+            <li>Company page</li>
+            <li>Products and services</li>
+            <li>Pressroom</li>
+            <li>Company blog</li>
+          </ul>
+        </div>
+        <div class="three">
+          <ul>
+            <li>Cookie Policy</li>
+            <li>Privacy Policy</li>
+            <li>User Agreement</li>
+            <li>Accessibility</li>
+          </ul>
+        </div>
+        <div class="four">
+          <ul>
+            <li id="Contact">Contact Us</li>
+            <li><i class="fab fa-whatsapp fa-2x"></i></li>
+            <li><i class="fab fa-instagram fa-2x"></i></li>
+            <li><i class="fab fa-twitter fa-2x"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <script type="text/javascript">
+ AOS.init();
+// List of sentences
+var _CONTENT = [ "A personal care",
+"for your healthy life",
+"welcome to",
+"V-TIEN" ];
+
+// Current sentence being processed
+var _PART = 0;
+
+// Character number of the current sentence being processed
+var _PART_INDEX = 0;
+
+// Holds the handle returned from setInterval
+var _INTERVAL_VAL;
+
+// Element that holds the text
+var _ELEMENT = document.querySelector("#text");
+
+// Implements typing effect
+function Type() {
+	var text =  _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+	_ELEMENT.innerHTML = text;
+	_PART_INDEX++;
+
+	// If full sentence has been displayed then start to delete the sentence after some time
+	if(text === _CONTENT[_PART]) {
+		clearInterval(_INTERVAL_VAL);
+		setTimeout(function() {
+			_INTERVAL_VAL = setInterval(Delete, 50);
+		}, 1000);
+	}
+}
+
+// Implements deleting effect
+function Delete() {
+	var text =  _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+	_ELEMENT.innerHTML = text;
+	_PART_INDEX--;
+
+	// If sentence has been deleted then start to display the next sentence
+	if(text === '') {
+		clearInterval(_INTERVAL_VAL);
+
+		// If last sentence then display the first one, else move to the next
+		if(_PART == (_CONTENT.length - 1))
+			_PART = 0;
+		else
+			_PART++;
+		_PART_INDEX = 0;
+
+		// Start to display the next sentence after some time
+		setTimeout(function() {
+			_INTERVAL_VAL = setInterval(Type, 100);
+		}, 200);
+	}
+}
+
+// Start the typing effect on load
+_INTERVAL_VAL = setInterval(Type, 100);
+
+</script>
+  </body>
+</html>
